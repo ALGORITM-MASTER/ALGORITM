@@ -5,21 +5,10 @@ import java.util.*;
 public class DefenseGame {
 
 	public int solution(int n, int k, int[] enemy) {
-		PriorityQueue<Integer> lastBigEnemy = new PriorityQueue<>();
 		int lastIndex = 0;
 		int remain = n;
 
-		for (int e : enemy) {
-			if (remain < e) {
-				break;
-			}
-
-			remain -= e;
-			lastIndex++;
-			addListBigEnemy(lastBigEnemy, k, e);
-		}
-
-		PriorityQueue<Integer> sortedBigEnemy = sort(lastBigEnemy);
+		PriorityQueue<Integer> sortedBigEnemy =  new PriorityQueue<>(Collections.reverseOrder());
 
 		while (lastIndex < enemy.length) {
 			// 남아있는 병사 수 >= 적
@@ -54,33 +43,5 @@ public class DefenseGame {
 		}
 
 		return lastIndex;
-	}
-
-	/**
-	 * 오름차순으로 하여 최고 값들을 추가하고, k개로 유지
-	 * @param lastBigEnemy : 최고 값들의 리스트
-	 * @param k : 무적권 갯수
-	 * @param currentEnemy : 더해줄 적의 수
-	 */
-	private void addListBigEnemy(PriorityQueue<Integer> lastBigEnemy, int k, int currentEnemy) {
-		lastBigEnemy.add(currentEnemy);
-		if (lastBigEnemy.size() > k) {
-			lastBigEnemy.remove();
-		}
-	}
-
-	/**
-	 * 오름차순으로 정렬된 k개의 값들을 내림차순으로 변경
-	 * @param lastBigEnemy
-	 * @return
-	 */
-	private PriorityQueue<Integer> sort(PriorityQueue<Integer> lastBigEnemy) {
-		PriorityQueue<Integer> sortedBigEnemy = new PriorityQueue<>(Collections.reverseOrder());
-
-		while (!lastBigEnemy.isEmpty()) {
-			sortedBigEnemy.add(lastBigEnemy.poll());
-		}
-
-		return sortedBigEnemy;
 	}
 }
