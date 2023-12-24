@@ -4,9 +4,13 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
+import java.util.Collections;
+import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,6 +31,22 @@ class Level2Test {
 		return Stream.of(
 			arguments(new String[] {"...D..R", ".D.G...", "....D.D", "D....D.", "..D...."}, 7),
 			arguments(new String[] {".D.R", "....", ".G..", "...D"}, -1)
+		);
+	}
+
+	@DisplayName("디펜스 게임 테스트")
+	@ParameterizedTest
+	@MethodSource("defense_gaem_parameter")
+	void defense_game_test(int n, int k, int[] enemy, int result) {
+		DefenseGame defenseGame = new DefenseGame();
+
+		assertThat(defenseGame.solution(n, k, enemy)).isEqualTo(result);
+	}
+
+	Stream<Arguments> defense_gaem_parameter() {
+		return Stream.of(
+			arguments(7, 3, new int[] {4, 2, 4, 5, 3, 3, 1}, 5),
+			arguments(2, 4, new int[] {3,3,3,3}, 4)
 		);
 	}
 }
