@@ -43,7 +43,9 @@ function solution(key, lock) {
     return true;
   };
 
+  //회전 4회
   for (let i = 0; i < 4; i++) {
+    //확장 배열에 하나씩 자물쇠를 검사
     for (let i = 0; i < kLen + lLen - 1; i++) {
       for (let j = 0; j < kLen + lLen - 1; j++) {
         if (openLock(extendLock, key, i, j)) return true;
