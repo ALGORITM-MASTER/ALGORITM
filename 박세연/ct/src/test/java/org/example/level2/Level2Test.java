@@ -49,4 +49,14 @@ class Level2Test {
 			arguments(2, 4, new int[] {3,3,3,3}, 4)
 		);
 	}
+
+	@DisplayName("두 원 사이의 정수 쌍")
+	@ParameterizedTest
+	@CsvSource({
+		"2, 3, 20"
+	})
+	void two_circle_pair(int r1, int r2, int result) {
+	    // Given, When, Then
+		assertThat(TwoCirclePair.solution(r1,r2)).isEqualTo(result);
+	}
 }
