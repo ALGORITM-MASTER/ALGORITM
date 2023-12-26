@@ -50,6 +50,7 @@ class Level2Test {
 		);
 	}
 
+
 	@DisplayName("광물 캐기")
 	@ParameterizedTest
 	@MethodSource("mineral_param")
@@ -68,4 +69,13 @@ class Level2Test {
 		);
 	}
 
+	@DisplayName("두 원 사이의 정수 쌍")
+	@ParameterizedTest
+	@CsvSource({
+		"2, 3, 20"
+	})
+	void two_circle_pair(int r1, int r2, int result) {
+	    // Given, When, Then
+		assertThat(TwoCirclePair.solution(r1,r2)).isEqualTo(result);
+	}
 }
