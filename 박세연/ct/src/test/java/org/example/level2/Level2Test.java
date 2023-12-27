@@ -50,6 +50,25 @@ class Level2Test {
 		);
 	}
 
+
+	@DisplayName("광물 캐기")
+	@ParameterizedTest
+	@MethodSource("mineral_param")
+	void mineral(int[] picks, String[] minerals, int result) {
+		assertThat(Mineral.solution(picks, minerals)).isEqualTo(result);
+	}
+
+	Stream<Arguments> mineral_param() {
+		return Stream.of(
+			arguments(new int[] {1, 3, 2},
+				new String[] {"diamond", "diamond", "diamond", "iron", "iron", "diamond", "iron", "stone"},
+				12),
+			arguments(new int[] {0, 1, 1}, new String[] {"diamond", "diamond", "diamond", "diamond", "diamond",
+				"iron", "iron", "iron", "iron", "iron", "diamond"},
+				50)
+		);
+	}
+
 	@DisplayName("두 원 사이의 정수 쌍")
 	@ParameterizedTest
 	@CsvSource({
