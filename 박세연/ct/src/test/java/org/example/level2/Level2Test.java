@@ -1,14 +1,12 @@
 package org.example.level2;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -16,7 +14,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class Level2Test {
@@ -71,11 +68,26 @@ class Level2Test {
 
 	@DisplayName("두 원 사이의 정수 쌍")
 	@ParameterizedTest
-	@CsvSource({
-		"2, 3, 20"
-	})
+	@CsvSource("2, 3, 20")
 	void two_circle_pair(int r1, int r2, int result) {
 	    // Given, When, Then
 		assertThat(TwoCirclePair.solution(r1,r2)).isEqualTo(result);
+	}
+
+	@DisplayName("우박수열 정적분")
+	@ParameterizedTest
+	@MethodSource("uParkIntegral_param")
+	void uParkIntegral_test(int k, int[][] ranges, double[] result) {
+	    // Given, When, Then
+		assertThat(UParkIntegral.solution(k, ranges)).isEqualTo(result);
+	}
+
+	Stream<Arguments> uParkIntegral_param() {
+		return Stream.of(
+			arguments(5,new int[][] {{0,0}, {0,-1}, {2,-3}, {3,-3}},
+				new double[] {33.0,31.5,0.0,-1.0}),
+			arguments(3, new int[][] {{0,0}, {1,-2}, {3,-3}},
+				new double[] {47.0,36.0,12.0})
+		);
 	}
 }
