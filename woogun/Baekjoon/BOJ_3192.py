@@ -27,6 +27,7 @@ def find_total_number():
             if square[j][i] == 0:
                 break
             temp_num += square[j][i]
+            count += 1
 
         if count == 3:
             return temp_num
@@ -54,6 +55,8 @@ def find_total_number():
 
     if count == 3:
         return temp_num
+
+    return 40001
 
 
 # 지워진 숫자 채워넣기
