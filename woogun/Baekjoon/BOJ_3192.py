@@ -56,7 +56,12 @@ def find_total_number():
     if count == 3:
         return temp_num
 
+<<<<<<< HEAD
     return 0
+=======
+    return 40001
+
+>>>>>>> 41bf7a93209bcaa9c96d532e3457f46bb1418e21
 
 # 지워진 숫자 채워넣기
 def fill_number():
