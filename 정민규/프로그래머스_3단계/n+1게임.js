@@ -10,8 +10,8 @@ function solution(coin, cards) {
   //가능배열 초기화
   const updateAble = (card, memo, initial, able) => {
     const num = card > n / 2 ? n + 1 - card : card;
-    if (memo[num] === 2) able.push([num, 2 - initialMemo[num]]);
-    able.sort((a, b) => b[1] - a[1]);
+    if (memo[num] === 2) able.push([num, 2 - initialMemo[num]]); //able을 업데이트해줌
+    able.sort((a, b) => b[1] - a[1]); // coin 내림차순
   };
 
   //초기값 설정
@@ -30,8 +30,10 @@ function solution(coin, cards) {
     updateAble(cards[i], memo, initialMemo, able);
     updateAble(cards[i + 1], memo, initialMemo, able);
 
+    //able 배열이 비어있는 경우 종료
     if (!able.length) return ret;
     coin -= able.pop()[1];
+    //coin 사용이 불가능한 경우 종료
     if (coin < 0) return ret;
     ret++;
   }
