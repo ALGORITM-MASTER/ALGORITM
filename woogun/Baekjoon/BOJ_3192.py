@@ -50,14 +50,18 @@ def find_total_number():
     for i in range(3):
         if square[i][dict[i]] == 0:
             break
-        temp_num += square[i][i]
+        temp_num += square[i][dict[i]]
         count += 1
 
     if count == 3:
         return temp_num
 
+<<<<<<< HEAD
+    return 0
+=======
     return 40001
 
+>>>>>>> 41bf7a93209bcaa9c96d532e3457f46bb1418e21
 
 # 지워진 숫자 채워넣기
 def fill_number():
@@ -72,9 +76,10 @@ def fill_number():
                x, y = i, j
 
         # 한 행의 탐색이 끝났을 때 temp의 길이가 2이면 나머지 1개의 숫자를 채울 수 있다.
-        if len(temp) == 2:
+        if len(temp) == 2 and j == 2:
             number = total_num - sum(temp)
             square[x][y] = number
+
 
     x, y = 0, 0
     # 3개의 열 탐색
@@ -87,9 +92,10 @@ def fill_number():
                 x, y = j, i
 
         # 한 행의 탐색이 끝났을 때 temp의 길이가 2이면 나머지 1개의 숫자를 채울 수 있다.
-        if len(temp) == 2:
+        if len(temp) == 2 and j == 2:
             number = total_num - sum(temp)
             square[x][y] = number
+
 
     x, y = 0, 0
     temp = []
@@ -102,6 +108,7 @@ def fill_number():
     if len(temp) == 2:
         number = total_num - sum(temp)
         square[x][y] = number
+
 
     x, y = 0, 0
     temp = []
@@ -116,6 +123,7 @@ def fill_number():
         square[x][y] = number
 
 
+
 square = [list(map(int, input().split())) for _ in range(3)]
 
 dict = {
@@ -128,4 +136,6 @@ total_num = find_total_number()
 fill_number()
 
 for answer in square:
-    print(*answer)
+    for ans in answer:
+        print(ans, end = " ")
+    print()
