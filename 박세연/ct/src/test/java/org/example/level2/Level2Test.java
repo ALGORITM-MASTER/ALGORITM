@@ -5,6 +5,7 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -89,5 +90,56 @@ class Level2Test {
 			arguments(3, new int[][] {{0,0}, {1,-2}, {3,-3}},
 				new double[] {47.0,36.0,12.0})
 		);
+	}
+
+	@DisplayName("")
+	@Test
+	void t() {
+	    // Given
+		String[][] plans = new String[][] {{"korean", "11:40", "30"}, {"english", "12:10", "20"}, {"math", "12:30", "40"}};
+		List<String[]> datas = List.of(plans);
+
+		List<Work> result = datas.stream()
+			.map(plan -> {
+				String[] time = plan[1].split(":");
+
+				return new Work(plan[0],
+					Integer.valueOf(time[0]),
+					Integer.valueOf(time[1]), Integer.valueOf(plan[2]));
+			})
+			.sorted((work1, work2) -> {
+				if (work1.startTime() < work2.startTime()) {
+					return 1;
+				}
+
+				return -1;
+			}).collect(Collectors.toList());
+
+		for (Work data : result) {
+			System.out.println(data);
+		}
+		// When
+
+	    // Then
+	}
+}
+
+class Work {
+
+	String name;
+	int startTime;
+	int remainTime;
+
+	public Work(String name, int hour, int minute, int during) {
+		this.startTime = hour*100 + minute;
+		this.remainTime = during;
+	}
+
+	public int startTime() {
+		return startTime;
+	}
+
+	public String toString() {
+		return name + "_" + startTime + "_" + remainTime;
 	}
 }
