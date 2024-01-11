@@ -1,5 +1,8 @@
 package org.example.level3;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class CrossBridge {
 	public int solution(int[] stones, int k) {
 		int min = 200000000;
