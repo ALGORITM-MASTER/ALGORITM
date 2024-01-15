@@ -1,23 +1,50 @@
-function solution(weights) {
-  let ret = 0;
-  const map = new Map();
-  for (const weight of weights) {
-    if (map.get(weight)) map.set(weight, map.get(weight) + 1);
-    else map.set(weight, 1);
+class MaxHeap {
+  constructor() {
+    this.ary = [0];
   }
-  const ary = [2 / 3, 2 / 4, 3 / 2, 3 / 4, 4 / 2, 4 / 3, 1];
-
-  for (let i = 0; i < weights.length; i++) {
-    const a = weights[i];
-    for (const b of ary) {
-      const num = map.get(a * b);
-
-      if (num) {
-        if (a * b === a && num > 1) ret += num - 1;
-        else if (a * b !== a) ret += num;
-      }
+  swap(a, b) {
+    [this.ary[a], this.ary[b]] = [this.ary[b], this.ary[a]];
+  }
+  push(value) {
+    this.ary.push(value);
+    let idx = this.ary.length - 1;
+    while (idx > 1) {
+      const parent = ~~(idx / 2);
+      if (this.ary[parent] >= this.ary[idx]) break;
+      this.swap(parent, idx);
+      idx = parent;
     }
   }
+  pop() {
+    if (this.ary.length === 1) return undefined;
+    if (this.ary.length === 2) return this.ary.pop();
+    const ret = this.ary[1];
+    this.ary[1] = this.ary.pop();
+    let idx = 1;
+    while (idx < this.ary.length) {
+      const [left, right] = [idx * 2, idx * 2 + 1];
+      let maxIdx = left;
+      if (left >= this.ary.length) break;
+      if (right < this.ary.length && this.ary[right] > this.ary[left])
+        maxIdx = right;
+      if (this.ary[maxIdx] <= this.ary[idx]) break;
+      this.swap(maxIdx, idx);
+      idx = maxIdx;
+    }
+    return ret;
+  }
+}
 
-  return ret / 2;
+function solution(n, works) {
+  const heap = new MaxHeap();
+  for (const work of works) {
+    heap.push(work);
+  }
+
+  for (let i = 0; i < n; i++) {
+    const num = heap.pop();
+    if (num > 1) heap.push(num - 1);
+  }
+
+  return heap.ary.reduce((a, c) => a + c ** 2, 0);
 }
