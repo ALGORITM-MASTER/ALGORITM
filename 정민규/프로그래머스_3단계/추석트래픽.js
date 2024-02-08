@@ -1,4 +1,5 @@
 function solution(lines) {
+  //누적합 정보 저장할 map 생성
   const map = new Map();
 
   //hh:mm:ss 형태를 ms로 변경
