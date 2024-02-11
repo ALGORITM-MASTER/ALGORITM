@@ -7,14 +7,12 @@ import java.util.stream.Stream;
 
 import org.assertj.core.api.Assertions;
 import org.example.level3.BestSet;
-import org.example.level3.DoublePriorityQueue;
+import org.example.level3.DoublePriorityqueue;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class Level3Test {
@@ -40,7 +38,7 @@ class Level3Test {
 	@ParameterizedTest
 	void double_queue(String[] operations, int[] answer) {
 	    // Given
-		DoublePriorityQueue doublePriorityQueue = new DoublePriorityQueue();
+		DoublePriorityqueue doublePriorityQueue = new DoublePriorityqueue();
 
 		// When
 		int[] result = doublePriorityQueue.solution(operations);
