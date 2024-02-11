@@ -15,6 +15,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class Level2Test {
@@ -120,6 +121,23 @@ class Level2Test {
 		}
 		// When
 
+	    // Then
+	}
+
+	@DisplayName("")
+	@ParameterizedTest
+	@ValueSource(strings = {
+		"AA",
+		"AE",
+		"AAA",
+		"E"
+	})
+	void dictionary(String data) {
+	    // Given
+		Dictionary dictionary = new Dictionary();
+		int result = dictionary.solution(data);
+	    // When
+		System.out.println(result);
 	    // Then
 	}
 }
