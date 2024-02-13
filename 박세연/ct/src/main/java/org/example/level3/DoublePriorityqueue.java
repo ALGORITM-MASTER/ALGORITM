@@ -3,7 +3,7 @@ package org.example.level3;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
-public class DoublePriorityQueue {
+public class DoublePriorityqueue {
 
 	public static void main(String[] args) {
 		PriorityQueue<Integer> enQueue = new PriorityQueue<>(Collections.reverseOrder());
