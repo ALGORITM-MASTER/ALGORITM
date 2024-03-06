@@ -2,6 +2,7 @@ function solution(cookie) {
   const getCnt = (i) => {
     let j = i + 1;
     if (!(0 <= i && j < cookie.length)) return 0;
+    //투포인터 사용
     let left = cookie[i];
     let right = cookie[j];
     let ret = 0;
