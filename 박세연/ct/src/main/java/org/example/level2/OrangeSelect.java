@@ -4,16 +4,26 @@ import java.util.*;
 import java.util.stream.*;
 
 public class OrangeSelect {
+
+	public static void main(String[] args) {
+		OrangeSelect orangeSelect = new OrangeSelect();
+
+		orangeSelect.solution(6, new int[]{1,3,2,5,4,5,2,3});
+	}
+
 	public int solution(int k, int[] tangerine) {
 		int answer = 0;
 		Map<Integer, Integer> countMap = new HashMap<>();
 
+		// 각 값들의 갯수 화인
 		for (int target : tangerine) {
 			updateMap(countMap, target);
 		}
 
+		// map을 list로 변환 후 많은 수대로 정렬
 		List<Entry> entryList = setEntry(countMap);
 
+		// 큰 값부터 오기에 하나씩 확인하며 크거나 같을때까지 찾고 반환
 		int kCount = 0;
 		for (Entry entry : entryList) {
 			answer++;
