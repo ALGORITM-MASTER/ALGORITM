@@ -8,7 +8,7 @@ public class OrangeSelect {
 	public static void main(String[] args) {
 		OrangeSelect orangeSelect = new OrangeSelect();
 
-		orangeSelect.solution(6, new int[]{1,3,2,5,4,5,2,3});
+		// orangeSelect.solution(6, new int[]{1,3,2,5,4,5,2,3});
 	}
 
 
