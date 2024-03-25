@@ -1,6 +1,7 @@
 package org.example.level2;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.stream.Stream;
@@ -8,6 +9,7 @@ import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.example.level3.BestSet;
 import org.example.level3.DoublePriorityqueue;
+import org.example.level3.Naver1;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -51,6 +53,20 @@ class Level3Test {
 		return Stream.of(
 			arguments(new String[] {"I 16", "I -5643", "D -1", "D 1", "D 1", "I 123", "D -1"}, new int[] {0,0}),
 			arguments(new String[] {"I -45", "I 653", "D 1", "I -642", "I 45", "I 97", "D 1", "D -1", "I 333"}, new int[]{333, -45})
+		);
+	}
+
+	@DisplayName("")
+	@MethodSource("naver1")
+	@ParameterizedTest
+	void double_queue(int[] plants, int[] waters) {
+		// Given
+		Naver1.solution(plants, waters);
+	}
+
+	Stream<Arguments> naver1() {
+		return Stream.of(
+			arguments(new int[]{2,4,1,2}, new int[]{3,1,2,1,4,1})
 		);
 	}
 }
