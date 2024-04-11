@@ -4,6 +4,7 @@ map = [ list(map(int,input().split())) for _ in range(r)]
 dr= [1,0,-1,0]
 dc = [0,1,0,-1]
 
+# 배열 내에서 갈 수 있는곳인지 파악
 def isCanGo(row,col):
     return 0<=row and row < r and 0<= col and col < c and map[row][col] != -1
 
@@ -12,10 +13,10 @@ def spread(map):
 
     for i in range(r):
         for j in range(c):
-            if map[i][j] == -1:
+            if map[i][j] == -1: # 공기청정기라면 스킵
                 tmp[i][j] = -1
                 continue
-            val = map[i][j] // 5
+            val = map[i][j] // 5 #확산될 먼지
             for d in range(4):
                 nr = i + dr[d]
                 nc = j + dc[d]
@@ -30,8 +31,8 @@ def clean(row,col,dr,dc,map):
     tmp = [arr[:] for arr in map]
     row += dr[0]
     col += dc[0]
-    tmp[row][col] = 0
-    for d in range(4):
+    tmp[row][col] = 0 # 처음으로 밀어낸 공기가 있는곳
+    for d in range(4): # 4방향으로 한바퀴만 동작
         while 1:
             nr = row + dr[d]
             nc = col + dc[d]
@@ -39,10 +40,11 @@ def clean(row,col,dr,dc,map):
                 tmp[nr][nc] = map[row][col]
                 row = nr
                 col = nc
-            else : break
+            else : 
+                break
     return tmp
 
-machine = []
+machine = [] # 공기청정기 상단,하단 파악
 for i in range(r):
     for j in range(c):
         if map[i][j] == -1:
