@@ -11,7 +11,7 @@ public class LastMusic {
 			musics.add(makeMusic(info));
 		}
 
-		// 시간으로
+		// 시간을 기준으로 정렬 : 시간 많고 -> 시간 적고
 		musics.sort((m1, m2) -> {
 			if (m1.getTime() > m2.getTime()) {
 				return -1;
@@ -22,15 +22,19 @@ public class LastMusic {
 
 			return 1;
 		});
-		System.out.println(musics);
+		// [14 HELLO, 5 WORLD]
+
+		// 찾으려는 음악의 코드 분리
 		String[] mArray = Music.parseSplit(m).toArray(String[]::new);
 
+		// 포함하는지 확인해서 반환
 		for (Music music : musics) {
 			if (music.containCode(mArray)) {
 				return music.getMusicName();
 			}
 		}
 
+		// 없으면 none
 		return "(None)";
 	}
 
@@ -93,13 +97,15 @@ class Music {
 		return ret.toArray(String[]::new);
 	}
 
-
+	// 포함하는지 확인
+	// 뮤직 데이터는  시간동안 동작하는 모든 코드
 	public boolean containCode(String[] m) {
 		if (this.musicData.length == 0) {
 			return false;
 		}
 
 		int[][] map = new int[this.musicData.length][m.length];
+
 
 		for (int musicIndex = 0; musicIndex < map.length; musicIndex++) {
 			if (this.musicData[musicIndex].equals(m[0])) {
@@ -119,7 +125,7 @@ class Music {
 			}
 		}
 
-
+		// DP로 포함하는지 확인
 		for (int musicIndex=1; musicIndex < map.length; musicIndex++) {
 			for (int mIndex = 1; mIndex < map[musicIndex].length; mIndex++) {
 				if (!m[mIndex].equals(this.musicData[musicIndex])) {
