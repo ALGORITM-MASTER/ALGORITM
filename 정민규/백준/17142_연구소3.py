@@ -64,7 +64,6 @@ def setBirus(area,cnt,r,c):
         time = simulation(area)
         if time!= -1:
             ret = min(ret,time)
-    
     nR,nC = getNextCood(r,c)
 
     if area[r][c] == 2:
