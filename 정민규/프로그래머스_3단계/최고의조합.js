@@ -3,6 +3,7 @@ function solution(n, s) {
   const num = ~~(s / n);
 
   const ret = Array(n).fill(num);
+
   for (let i = 1; i <= s % n; i++) {
     ret[n - i] += 1;
   }
